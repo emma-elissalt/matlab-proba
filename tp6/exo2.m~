@@ -1,0 +1,28 @@
+clear variables; close all; 
+
+N=50000;
+n=50;
+X=2*ones(1,N)-rand(1,N);
+Y=2*ones(1,N)-rand(1,N);
+
+%loi uniforme
+subplot(2,2,1);
+[h_empX,xout]=hist(X,n);
+bar(xout,h_empX/trapz(xout,h_empX),'b');
+title('Loi Uniforme');
+
+%somme
+S=X+Y; 
+[h,sout]=hist(S,n);     
+aire=trapz(sout,h);     
+densite_emp=h/aire;  
+subplot(2,2,2);
+bar(sout,densite_emp,'g');
+title('S=X+Y');
+%théorique
+s1=2:0.1:3;
+h_theo_s1=s1-2;
+s2=3:0.1:4;
+h_theo_=4-s2;
+plot3=(sout,h_theo_s1,'b');
+legend('Empirique','Théorique');
